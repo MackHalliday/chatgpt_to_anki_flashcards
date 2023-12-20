@@ -53,7 +53,7 @@ if __name__ == "__main__":
     if not API_KEY:
         raise ValueError("API key not found. Make sure to set OPENAI_API_KEY in your environment variables.")
 
-    logging.basicConfig(level=logging.INFO)  # Adjust the logging level as needed
+    logging.basicConfig(level=logging.INFO)
     generator = FlashcardGenerator(API_KEY)
     user_notes = generator.user_notes()
     generator.create_flashcards(user_notes)
