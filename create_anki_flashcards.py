@@ -49,7 +49,7 @@ class FlashcardGenerator:
 
             f.write(flashcards)
 
-        logging.info("New flashcards created!")
+        logging.info("New flashcards have been created in the flashcards_out.txt file!")
 
 
 if __name__ == "__main__":
