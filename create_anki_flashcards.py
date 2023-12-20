@@ -40,12 +40,12 @@ class FlashcardGenerator:
             logging.error(f"Error while interacting with OpenAI: {str(error)}")
             return
 
-        with open("flashcards_output.txt", "w") as file:
+        with open("flashcards_output.txt", "w") as flashcard_output:
             replacements = {"?,": "?;", '?,"': "?;", '."': ".", "Question,Answer": ""}
             for old_str, new_str in replacements.items():
                 flashcards = flashcards.replace(old_str, new_str)
 
-            file.write(flashcards)
+            flashcard_output.write(flashcards)
 
         logging.info("New flashcards have been created in the flashcards_out.txt file!")
 
