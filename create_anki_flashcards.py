@@ -10,24 +10,22 @@ class FlashcardGenerator:
     def __init__(self, api_key: str) -> None:
         self.client = OpenAI(api_key=api_key)
 
-    def user_notes(self, input_file: str = "flashcards_input.txt") -> str:
-        with open(input_file, "r") as flashcard_input:
+    def create_flashcards(
+        self,
+    ) -> None:
+        with open("flashcards_input.txt", "r") as flashcard_input:
             user_notes = (
                 f"Can you make flashcards with questions and answers in a CSV file format? "
                 f"Please use these notes to create the flashcards {flashcard_input.read()}. "
                 "Do not include any other text other than the questions and answers in your reply. "
             )
-        return user_notes
 
-    def create_flashcards(
-        self, user_message: str, output_file: str = "flashcards_output.txt"
-    ) -> None:
         messages = [
             {
                 "role": "system",
                 "content": "You are a helpful teacher that creates concise flashcards.",
             },
-            {"role": "user", "content": user_message},
+            {"role": "user", "content": user_notes},
         ]
 
         try:
@@ -38,16 +36,16 @@ class FlashcardGenerator:
                 max_tokens=2000,
             )
             flashcards = response.choices[0].message.content
-        except Exception as e:
-            logging.error(f"Error while interacting with OpenAI: {str(e)}")
+        except Exception as error:
+            logging.error(f"Error while interacting with OpenAI: {str(error)}")
             return
 
-        with open(output_file, "w") as f:
+        with open("flashcards_output.txt", "w") as file:
             replacements = {"?,": "?;", '?,"': "?;", '."': ".", "Question,Answer": ""}
             for old_str, new_str in replacements.items():
                 flashcards = flashcards.replace(old_str, new_str)
 
-            f.write(flashcards)
+            file.write(flashcards)
 
         logging.info("New flashcards have been created in the flashcards_out.txt file!")
 
@@ -61,5 +59,4 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO)
     generator = FlashcardGenerator(API_KEY)
-    user_notes = generator.user_notes()
-    generator.create_flashcards(user_notes)
+    generator.create_flashcards()
