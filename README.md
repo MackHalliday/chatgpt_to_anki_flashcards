@@ -8,13 +8,15 @@ This script allows users to convert their notes into flashcards with ChatGPT 3.5
 1. Install requirements with `pip install -r requirements.txt`
 
 
-2. Add your OpenAI to `.env` file.
+2. Add your OpenAI Access Key to `.env` file.
 
 ```
+
 OPENAI_API_KEY=<your openai api key>"
+
 ```
-- [Where do I find my API Key?](https://help.openai.com/en/articles/4936850-where-do-i-find-my-api-key)
-- Note: OpenAI will not work until Billing is enabled on the account
+  - [Where do I find my API Key?](https://help.openai.com/en/articles/4936850-where-do-i-find-my-api-key)
+  - Note: OpenAI will not work until Billing is enabled on the account
 
 ## How to Use
 
