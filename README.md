@@ -17,6 +17,6 @@ OPENAI_KEY="openai key"
 3. Import new file 'flashcards_out.txt' into Anki and select file seperator by semi-colon.
 
 # TODO 
-- [] More descriptive README.md
-- [] Add commandline args like tags
-- [] Add testing
+- [ ] More descriptive README.md
+- [ ] Add commandline args like tags
+- [ ] Add testing
