@@ -1,6 +1,6 @@
 
 # Overview 
-This script allows users to convert their notes into flashcards. The flashcards are formatted to easily import into (AnkiWeb)[https://ankiweb.net]. 
+This script allows users to convert their notes into flashcards. The flashcards are formatted to easily import into [AnkiWeb](https://ankiweb.net). 
 
 
 ## Basic Setup
