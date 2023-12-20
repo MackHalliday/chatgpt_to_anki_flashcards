@@ -1,120 +1,32 @@
-# EC2 Instance Storage
+From Wikipedia, the free encyclopedia
+For other uses, see Capybara (disambiguation).
+Capybara
 
-# EBS
+in the Pantanal, Brazil
+Conservation status
 
-[Amazon Elastic Block Store (Amazon EBS) - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)
+Least Concern (IUCN 3.1)[1]
+Scientific classificationEdit this classification
+Domain:	Eukaryota
+Kingdom:	Animalia
+Phylum:	Chordata
+Class:	Mammalia
+Order:	Rodentia
+Family:	Caviidae
+Genus:	Hydrochoerus
+Species:	H. hydrochaeris
+Binomial name
+Hydrochoerus hydrochaeris
+(Linnaeus, 1766)
 
-EBS volumes are used for storing data persistently. They are often used as the root (boot) volume for EC2 instances or as additional storage for applications and data. EBS volumes can be detached from one EC2 instance and attached to another, providing flexibility in managing storage.
+Native range
+Synonyms
+Sus hydrochaeris Linnaeus, 1766
 
-## Overview
+The capybara[a] or greater capybara (Hydrochoerus hydrochaeris) is a giant cavy rodent native to South America. It is the largest living rodent[2] and a member of the genus Hydrochoerus. The only other extant member is the lesser capybara (Hydrochoerus isthmius). Its close relatives include guinea pigs and rock cavies, and it is more distantly related to the agouti, the chinchilla, and the nutria. The capybara inhabits savannas and dense forests, and lives near bodies of water. It is a highly social species and can be found in groups as large as 100 individuals, but usually live in groups of 10–20 individuals. The capybara is hunted for its meat and hide and also for grease from its thick fatty skin.[3] It is not considered a threatened species.
 
-- Elastic Block Store Volume is a network drive that can be attached to an instance while the instance runs
-- Allows data to persist even after termination
-- EBS can only be mounted to one instance at a time
-- EBS is bound to a specific availability zone, but can be moved across zones with a snapshot
-- Uses a network to communicate between instances - so creates latency
-- Must provision capacity for EBS
+Etymology
+Its common name is derived from Tupi ka'apiûara, a complex agglutination of kaá (leaf) + píi (slender) + ú (eat) + ara (a suffix for agent nouns), meaning "one who eats slender leaves", or "grass-eater".[4] The scientific name, both hydrochoerus and hydrochaeris, comes from Greek ὕδωρ (hydor "water") and χοῖρος (choiros "pig, hog").[5][6]
 
-![Screenshot 2023-12-15 at 5.17.40 PM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/3cec48d3-e915-44d0-97b1-f43b1b4a346b/99e07ee7-a792-48e7-b05b-0da3f7440d2d/Screenshot_2023-12-15_at_5.17.40_PM.png)
-
-### Delete on Termination Attribute for EBS
-
-- By default, root EBS volume is deleted when the attached EC2 terminates
-- By default, any other attached EBS volume is not deleted when the attached EC2 terminates
-
-## EBS Snapshot
-
-- Backup of EBS volume, can recreate volume from snapshot
-- Recommend detaching volume to do snapshot, but not needed
-- Can copy snapshot across AZ or region
-- EBS Snap Features
-    - EBS Snapshot Archive: 75% cheaper, 24-75 hours to restore
-    - Recycle Bin: Setup rules to retain deleted snapshots to be recovered if accidental deletion. Can specify retention rate
-    - Fast Snapshot Restore: Force full initialization of snapshot to have no latency on first use
-
-## EBS Metrics
-
-- IOPS: **Input/Output Operations Per Second.** Common performance metric used to measure the number of read and write operations that a storage device can perform in one second. Good metric when workloads need to be consistent and predictable
-- Throughput: Measures amount of data that can be transferred between the storage device and instance given a certain time period. Focused on ability to move a large amount of data.
-
-## Types of EBS Volumes
-
-1. General Purpose: gp2 and gp3. Balance price and performance for a wide variety of transactional workloads. Use cases include medium-size single-instance databases, and development and test environments. Can use for system boot. 
-    1. gp2: size of volume and IPO can be set independently 
-    2. gp3: size of volume and IPO linked together
-2. Provisioned IOPS: io1 and io2. Used for I/O workloads that are sensitive to storage performance and consistency. Allows provisioning of a specific amount of IOPS for predictable performance. Good for applications that need more than 16,000 IOPS. Supports EBS multi-attach. Can use system boot
-3. Throughput Optimized: st1. Low-cost magnetic storage that defined performance in terms of throughput rather than IOPS. Cannot be a boot volume. 
-4. Cold HDD: sc1. Ideal for less frequently accessed workloads with large, sequential I/O patterns. Low-cost storage for infrequently accessed data. 
-
-## Multi-attached feature
-
-- Attach the same EBS volume to multiple EC2 instances in same AZ
-- Only available for io1/io2 family
-- Use Case: achieve higher application availability in clustered linux application
-- Up to 16 EC2 Instances at a time
-
-# AMI Overview
-
-Amazon Machine Image. An AMI is a pre-configured virtual machine image, which contains the necessary information to launch an instance (a virtual server) in the AWS cloud. Essentially, it is a template that includes an operating system, application server, and applications, along with any additional configurations.
-
-- Allows for fast boot time and configuration time
-- AMI built for a specific region
-- Can launch EC2 instance from
-    - A Public AMI: AWS provided
-    - Your own AMI
-    - An AWS Marketplace AMI: created by someone else
-
-## AMI Process from an EC2 instance
-
-1. Start an EC2 instance and customize it 
-2. Stop the instance for data integrity
-3. Build an AMI - this will also create an EBS snapshot 
-4. Launch instances from other AMI
-    
-    ![Screenshot 2023-12-15 at 5.42.17 PM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/3cec48d3-e915-44d0-97b1-f43b1b4a346b/def7e72c-9648-4fa4-902f-09c299a1c3e1/Screenshot_2023-12-15_at_5.42.17_PM.png)
-    
-
-## EC2 Instance Store
-
-- If need a high-performance hardware disk, use EC2 Instance Store
-- Better than EBS
-- Better I/O performance
-- EC2 Instance store lose their storage if they are stopped
-- Good for buffer, cache, scratch data, temporary content
-- Risk of data loss if hardware fails
-- Recommended to use Backups and Replications
-
-# EFS - Elastic File System
-
-- Can be mounted on many EC2
-- EFS works with EC2 instances in multiple-AZ
-- High available, scalable, expensive, pay per use
-    
-    ![Screenshot 2023-12-19 at 6.56.12 PM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/3cec48d3-e915-44d0-97b1-f43b1b4a346b/91b1f62a-8a12-4d97-aa56-3c38e2fcb963/Screenshot_2023-12-19_at_6.56.12_PM.png)
-    
-- Use case: content management, web serving, data sharing, development and testing
-- Uses security group to control access to EFS
-- Encryption at rest using KMS
-- Compatible with Linux based AMI
-- Automatically scales!
-- Has lifecycle management to reduce cost
-
-## Performance
-
-- Performance Mode: set at creation
-    1. General Purpose (default)
-    2. Max I/O
-- Throughput Mode
-    1. Provisioned 
-    2. Elastic: Good for unpredictable I/O. automatically scale throughput. Only pay for what you use.
-    3. Bursting: Scaled with the amount of storage.
-
-## Storage Classes
-
-- Storage Tiers
-    1. Standard: Frequently accessed files
-    2. Infrequent access (EFS-IA): Cost to retrieve files, lower price to store. Enabled with Lifecycle Policy. Data accessed a few times each quarter.
-    3. Archive: Data accessed a few times each year.
-- Availability
-    1. Regional
-    2. One AZ
+Classification and phylogeny
+The capybara and the lesser capybara both belong to the subfamily Hydrochoerinae along with the rock cavies. The living capybaras and their extinct relatives were previously classified in their own family Hydrochoeridae.[7] Since 2002, molecular phylogenetic studies have recognized a close relationship between Hydrochoerus and Kerodon, the rock cavies,[8] supporting placement of both genera in a subfamily of Caviidae.[5]

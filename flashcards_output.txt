@@ -1,16 +1,17 @@
 
-What is an EBS volume used for?;EBS volumes are used for storing data persistently. They are often used as the root (boot) volume for EC2 instances or as additional storage for applications and data.
-Can an EBS volume be detached from one EC2 instance and attached to another?;Yes, EBS volumes can be detached from one EC2 instance and attached to another, providing flexibility in managing storage.
-What is the Delete on Termination attribute for EBS?;By default, the root EBS volume is deleted when the attached EC2 instance terminates. Any other attached EBS volumes are not deleted by default.
-What is an EBS snapshot?;An EBS snapshot is a backup of an EBS volume. It can be used to recreate the volume if needed. Snapshots can be copied across availability zones or regions.
-What is the IOPS metric for EBS?;IOPS stands for Input/Output Operations Per Second. It is a common performance metric used to measure the number of read and write operations that a storage device can perform in one second.
-What are the types of EBS volumes?;The types of EBS volumes are: General Purpose (gp2 and gp3), Provisioned IOPS (io1 and io2), Throughput Optimized (st1), and Cold HDD (sc1).
-What is the Multi-attached feature for EBS?;The Multi-attached feature allows the same EBS volume to be attached to multiple EC2 instances in the same availability zone. This feature is only available for the io1/io2 family of EBS volumes.
-What is an AMI?;An AMI is an Amazon Machine Image. It is a pre-configured virtual machine image that contains the necessary information to launch an instance in the AWS cloud. It includes an operating system, application server, applications, and additional configurations.
-How can an AMI be launched?;An AMI can be launched from a public AMI provided by AWS, your own AMI, or an AMI from the AWS Marketplace created by someone else.
-What is EC2 Instance Store?;EC2 Instance Store is a high-performance hardware disk that can be used for buffer, cache, scratch data, and temporary content. However, the storage is lost if the instance is stopped.
-What is EFS (Elastic File System)?;EFS is an Elastic File System that can be mounted on multiple EC2 instances. It is highly available, scalable, and expensive. It is commonly used for content management, web serving, data sharing, development, and testing.
-How does EFS achieve high availability?;EFS achieves high availability by working with EC2 instances in multiple availability zones. This ensures that the file system remains accessible even if one availability zone experiences a failure.
-What are the performance modes for EFS?;The performance modes for EFS are General Purpose and Max I/O. General Purpose is the default mode and is suitable for most workloads. Max I/O mode provides higher levels of throughput and IOPS for applications with higher performance requirements.
-What are the storage classes for EFS?;The storage classes for EFS are Standard, Infrequent Access (EFS-IA), and Archive. Standard is for frequently accessed files, EFS-IA is for files accessed a few times each quarter, and Archive is for files accessed a few times each year.
-What are the availability options for EFS?;The availability options for EFS are regional and one availability zone. Regional option provides data durability across multiple availability zones, while one availability zone option includes only one availability zone.
+What is the scientific name of the capybara?;Hydrochoerus hydrochaeris
+What is the common name of the capybara derived from?;Tupi ka'apiûara
+What is the conservation status of the capybara?;Least Concern
+What is the native range of the capybara?;South America
+What is the largest living rodent?;Capybara
+What is the genus of the capybara?;Hydrochoerus
+What is the order of the capybara?;Rodentia
+What is the family of the capybara?;Caviidae
+What is the species of the capybara?;H. hydrochaeris
+What does the name "capybara" mean in Tupi language?;One who eats slender leaves or grass-eater
+What do capybaras usually live near?;Bodies of water
+How does the capybara live in groups?;In groups of 10-20 individuals, but can be as large as 100 individuals
+What is the capybara hunted for?;Meat, hide, and grease from its fatty skin
+What is the etymology of the scientific name of the capybara?;Derived from Greek words meaning "water" and "pig, hog"
+What is the classification of the capybara within the subfamily Hydrochoerinae?;Capybara and lesser capybara
+What is the relationship between Hydrochoerus and Kerodon?;Closely related, supporting placement in the same subfamily of Caviidae
