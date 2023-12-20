@@ -2,7 +2,7 @@
 # Overview 
 This script allows users to convert their notes into flashcards with ChatGPT 3.5. The flashcards are formatted to easily import into [AnkiWeb](https://ankiweb.net). 
 
-![Step One](chatgpt_to_anki_flashcards/img/step_one.png)
+![Step One](/chatgpt_to_anki_flashcards/img/step_one.png)
 
 
 ## Basic Setup
