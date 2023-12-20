@@ -15,3 +15,8 @@ OPENAI_KEY="openai key"
 1. Copy notes into 'flashcards_input.txt' file. 
 2. Run command `python3 create_anki_flashcards.py`
 3. Import new file 'flashcards_out.txt' into Anki and select file seperator by semi-colon.
+
+# TODO 
+- [] More descriptive README.md
+- [] Add commandline args like tags
+- [] Add testing
