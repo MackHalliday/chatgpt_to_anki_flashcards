@@ -5,11 +5,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class FlashcardGenerator:
-    def __init__(self, api_key):
+    def __init__(self, api_key: str) -> None:
         self.client = OpenAI(api_key=api_key)
 
-    def user_notes(self, input_file="flashcards_input.txt"):
+    def user_notes(self, input_file: str = "flashcards_input.txt") -> str:
         with open(input_file, "r") as flashcard_input:
             user_notes = (
                 f"Can you make flashcards with questions and answers in a CSV file format. "
@@ -18,15 +19,23 @@ class FlashcardGenerator:
             )
         return user_notes
 
-    def create_flashcards(self, user_message, output_file="flashcards_output.txt"):
+    def create_flashcards(
+        self, user_message: str, output_file: str = "flashcards_output.txt"
+    ) -> None:
         messages = [
-            {"role": "system", "content": "You are a helpful assistant that creates flashcards with questions and answers."},
+            {
+                "role": "system",
+                "content": "You are a helpful assistant that creates flashcards with questions and answers.",
+            },
             {"role": "user", "content": user_message},
         ]
 
         try:
             response = self.client.chat.completions.create(
-                model="gpt-3.5-turbo", messages=messages, temperature=0.7, max_tokens=2000
+                model="gpt-3.5-turbo",
+                messages=messages,
+                temperature=0.7,
+                max_tokens=2000,
             )
             flashcards = response.choices[0].message.content
         except Exception as e:
@@ -34,12 +43,7 @@ class FlashcardGenerator:
             return
 
         with open(output_file, "w") as f:
-            replacements = {
-                '?,': '?;',
-                '?,"': '?;',
-                '."': '.',
-                'Question,Answer': ''
-            }
+            replacements = {"?,": "?;", '?,"': "?;", '."': ".", "Question,Answer": ""}
             for old_str, new_str in replacements.items():
                 flashcards = flashcards.replace(old_str, new_str)
 
@@ -51,7 +55,9 @@ class FlashcardGenerator:
 if __name__ == "__main__":
     API_KEY = os.environ.get("OPENAI_API_KEY")
     if not API_KEY:
-        raise ValueError("API key not found. Make sure to set OPENAI_API_KEY in your environment variables.")
+        raise ValueError(
+            "API key not found. Make sure to set OPENAI_API_KEY in your environment variables."
+        )
 
     logging.basicConfig(level=logging.INFO)
     generator = FlashcardGenerator(API_KEY)
