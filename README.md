@@ -12,7 +12,7 @@ This script allows users to convert their notes into flashcards with ChatGPT 3.5
 
 ```
 
-OPENAI_API_KEY=<your openai api key>"
+OPENAI_API_KEY=<your openai api key>
 
 ```
   - [Where do I find my API Key?](https://help.openai.com/en/articles/4936850-where-do-i-find-my-api-key)
@@ -28,7 +28,7 @@ OPENAI_API_KEY=<your openai api key>"
    
     ![Step Two](img/step_two.png)
 
-3. Import new file `flashcards_out.txt` into AnkiWeb and select file seperator by semi-colon. For more on the importing process, please see [Anki's documentation](https://docs.ankiweb.net/importing/text-files.html)
+3. Import new file `flashcards_output.txt` into AnkiWeb and select file seperator by semi-colon. For more on the importing process, please see [Anki's documentation](https://docs.ankiweb.net/importing/text-files.html)
 
     ![Step Three](img/step_three.png)
 
