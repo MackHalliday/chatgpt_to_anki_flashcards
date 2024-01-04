@@ -41,13 +41,22 @@ class FlashcardGenerator:
             return
 
         with open("flashcards_output.txt", "w") as flashcard_output:
-            replacements = {"?,": "?;", '?,"': "?;", '."': ".", "Question,Answer": ""}
+            replacements = {
+                ",True":";True",
+                ",False":";False",
+                "?,": "?;",
+                '?,"': "?;",
+                '."': ".",
+                "Question,Answer": "",
+            }
             for old_str, new_str in replacements.items():
                 flashcards = flashcards.replace(old_str, new_str)
 
             flashcard_output.write(flashcards)
 
-        logging.info("New flashcards have been created in the flashcards_output.txt file!")
+        logging.info(
+            "New flashcards have been created in the flashcards_output.txt file!"
+        )
 
 
 if __name__ == "__main__":
