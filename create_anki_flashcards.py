@@ -10,6 +10,19 @@ class FlashcardGenerator:
     def __init__(self, api_key: str) -> None:
         self.client = OpenAI(api_key=api_key)
 
+    def format_file(self, flashcards: str) -> None:
+        with open("flashcards_output.txt", "w") as flashcard_output:
+            replacements = {
+                "Question,Answer": "",
+                ",True": ";True",
+                ",False": ";False",
+                "?,": "?;",
+            }
+            for old_str, new_str in replacements.items():
+                flashcards = flashcards.replace(old_str, new_str)
+
+            flashcard_output.write(flashcards)
+
     def create_flashcards(
         self,
     ) -> None:
@@ -41,17 +54,7 @@ class FlashcardGenerator:
             logging.error(f"Error while interacting with OpenAI: {str(error)}")
             return
 
-        with open("flashcards_output.txt", "w") as flashcard_output:
-            replacements = {
-                "Question,Answer": "",
-                ",True": ";True",
-                ",False": ";False",
-                "?,": "?;",
-            }
-            for old_str, new_str in replacements.items():
-                flashcards = flashcards.replace(old_str, new_str)
-
-            flashcard_output.write(flashcards)
+        self.format_file(flashcards)
 
         logging.info(
             "New flashcards have been created in the flashcards_output.txt file!"
