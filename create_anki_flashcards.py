@@ -36,21 +36,20 @@ class FlashcardGenerator:
                 max_tokens=2000,
             )
             flashcards = response.choices[0].message.content
+
         except Exception as error:
             logging.error(f"Error while interacting with OpenAI: {str(error)}")
             return
 
         with open("flashcards_output.txt", "w") as flashcard_output:
-            # replacements = {
-            #     ",True":";True",
-            #     ",False":";False",
-            #     "?,": "?;",
-            #     '?,"': "?;",
-            #     '."': ".",
-            #     "Question,Answer": "",
-            # }
-            # for old_str, new_str in replacements.items():
-            #     flashcards = flashcards.replace(old_str, new_str)
+            replacements = {
+                "Question,Answer": "",
+                ",True": ";True",
+                ",False": ";False",
+                "?,": "?;",
+            }
+            for old_str, new_str in replacements.items():
+                flashcards = flashcards.replace(old_str, new_str)
 
             flashcard_output.write(flashcards)
 
