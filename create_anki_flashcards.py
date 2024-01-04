@@ -15,9 +15,9 @@ class FlashcardGenerator:
     ) -> None:
         with open("flashcards_input.txt", "r") as flashcard_input:
             user_notes = (
-                f"Can you make flashcards with questions and answers in a CSV file format? "
+                f"Can you make flashcards with questions and answers. "
                 f"Please use these notes to create the flashcards {flashcard_input.read()}. "
-                "Do not include any other text other than the questions and answers in your reply. "
+                "You must format your response in a CSV format with no other text than the flashcard question and answer"
             )
 
         messages = [
@@ -41,16 +41,16 @@ class FlashcardGenerator:
             return
 
         with open("flashcards_output.txt", "w") as flashcard_output:
-            replacements = {
-                ",True":";True",
-                ",False":";False",
-                "?,": "?;",
-                '?,"': "?;",
-                '."': ".",
-                "Question,Answer": "",
-            }
-            for old_str, new_str in replacements.items():
-                flashcards = flashcards.replace(old_str, new_str)
+            # replacements = {
+            #     ",True":";True",
+            #     ",False":";False",
+            #     "?,": "?;",
+            #     '?,"': "?;",
+            #     '."': ".",
+            #     "Question,Answer": "",
+            # }
+            # for old_str, new_str in replacements.items():
+            #     flashcards = flashcards.replace(old_str, new_str)
 
             flashcard_output.write(flashcards)
 
