@@ -1,2 +1,2 @@
-import openai
-import dotenv 
+openai
+python-dotenv
